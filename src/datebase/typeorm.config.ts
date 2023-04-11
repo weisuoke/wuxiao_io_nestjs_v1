@@ -1,19 +1,15 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from '../user/user.entity';
-import { Role } from '../role/role.entity';
 
 const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'admin',
-  password: '123456',
-  database: 'first',
-  entities: [User, Role],
+  host: process.env.POSTGRES_HOST || 'localhost',
+  port: parseInt(process.env.POSTGRES_PORT, 10) || 5432,
+  username: process.env.POSTGRES_USER || 'admin',
+  password: process.env.POSTGRES_PASSWORD || '123456',
+  database: process.env.POSTGRES_DB || 'first',
+  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   synchronize: true, // Set this to 'false' in production
-  logging: true,
-  // ssl:
-  //   process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+  logging: process.env.TYPEORM_SYNC === 'true',
 };
 
 export default typeOrmConfig;
