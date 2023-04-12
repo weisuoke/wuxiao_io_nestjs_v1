@@ -9,7 +9,8 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+
 import { CreateUserDto } from './create-user.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
