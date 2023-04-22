@@ -9,9 +9,11 @@ WORKDIR /app
 
 # 复制 package*.json 和 pnpm-lock.yaml (如果有)
 COPY package*.json pnpm-lock.yaml* ./
+COPY .env.development ./
+COPY .env.production ./
 
 # 安装pnpm
-RUN npm install -g pnpm@7.21.0
+RUN npm install -g pnpm@8.3.1
 
 # 安装依赖项
 RUN pnpm install --frozen-lockfile
